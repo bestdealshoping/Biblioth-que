@@ -3,170 +3,106 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Formations | Woldjy Impact Lab</title>
-<link rel="stylesheet" href="style.css">
-<script src="js/script.js" defer></script>
-
+<title>Bibliothèque | Woldjy Impact Lab</title>
 <style>
-/* Modal CSS minimal pour pop-up */
-.modal-form {
-  display: none;
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom:0;
-  background: rgba(0,0,0,0.5);
-  justify-content: center; align-items: center;
-  z-index: 9999;
-}
-.modal-content {
-  background: #fff;
-  padding: 20px;
-  max-width: 400px;
-  width: 90%;
-  border-radius: 10px;
-  position: relative;
-}
-.close-btn {
-  position: absolute;
-  top: 10px; right: 15px;
-  font-size: 24px;
-  cursor: pointer;
-}
+body{font-family:Arial,sans-serif;margin:0;padding:0;color:#222;}
+.header{background:#2196f3;color:#fff;}
+.header .container{display:flex;align-items:center;justify-content:space-between;padding:10px;}
+.header nav a{color:#fff;margin:0 10px;text-decoration:none;font-weight:500;}
+.hero{background:#f4f6f8;text-align:center;padding:50px 20px;}
+.hero h1{color:#2196f3;}
+.section{max-width:1100px;margin:auto;padding:20px;}
+.card{background:#fff;padding:20px;margin-bottom:18px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.1);}
+.btn{background:#2196f3;color:#fff;padding:10px 16px;border:none;border-radius:5px;cursor:pointer;font-size:1rem;text-decoration:none;}
+.btn:hover{opacity:0.85;}
+.hidden{display:none;}
+.footer{background:#222;color:#fff;padding:20px 0;}
+.footer a{color:#ffc107;text-decoration:none;margin-right:10px;}
+.hidden{display:none;}
+
 </style>
-
-<script>
-function openForm(id){
-  document.getElementById(id).style.display = 'flex';
-}
-function closeForm(id){
-  document.getElementById(id).style.display = 'none';
-}
-</script>
-
 </head>
 <body>
 
-<!-- HEADER / NAVIGATION -->
+<!-- HEADER -->
 <header class="header">
-  <div class="container nav">
-    <div class="logo">
-      <img src="logo.png" alt="Woldjy Impact Lab" class="logo-img">
-    </div>
+  <div class="container">
+    <img src="images/hero/logo.png" alt="Woldjy Impact Lab" style="height:50px;">
     <nav>
       <a href="index.html">Accueil</a>
       <a href="services.html">Services</a>
       <a href="offers.html">Formations</a>
-      <a href="process.html">Processus</a>
-      <a href="audit.html">Audit</a>
+      <a href="acceuil_bibliotheque.html">Bibliothèque</a>
       <a href="contact.html">Contact</a>
     </nav>
-    <a href="audit.html" class="btn btn-primary">Demander un audit gratuit</a>
   </div>
 </header>
 
-<!-- HERO FORMATIONS --><section class="hero container">
-<div class="hero-text">
-  <h1>Bienvenue à notre Bibliothèque</h1>
-  <p>Consultez nos ressources exclusives. Pour télécharger les documents, vous devez partager le site avec 10 contacts WhatsApp.</p>
-</div>
+<!-- HERO -->
+<section class="hero">
+  <h1>Vos ebooks et documents exclusifs</h1>
+  <p>Partagez notre site avec 5 personnes sur WhatsApp pour débloquer le téléchargement.</p>
 </section>
 
-<section class="container">
-<div id="library-content" class="grid-2"></div>
+<!-- EBOOKS LIST -->
+<section class="section">
+  <div class="card">
+    <img src="images/bibliotheque/ebook1.png" alt="Marketing Digital">
+    <h3>Ebook: Marketing Digital</h3>
+    <button class="btn" onclick="shareWhatsApp('ebook1.pdf',this)">Partager sur WhatsApp</button>
+    <a href="ebooks/ebook1.pdf" class="btn hidden">Télécharger</a>
+  </div>
+  <div class="card">
+    <img src="images/bibliotheque/ebook2.png" alt="Stratégie B2B">
+    <h3>Ebook: Stratégie B2B</h3>
+    <button class="btn" onclick="shareWhatsApp('ebook2.pdf',this)">Partager sur WhatsApp</button>
+    <a href="ebooks/ebook2.pdf" class="btn hidden">Télécharger</a>
+  </div>
+  <div class="card">
+    <img src="images/bibliotheque/ebook1.png" alt="Marketing Digital">
+    <h3>Ebook: Marketing Digital</h3>
+    <button class="btn" onclick="shareWhatsApp('ebook1.pdf',this)">Partager sur WhatsApp</button>
+    <a href="ebooks/ebook1.pdf" class="btn hidden">Télécharger</a>
+  </div>
+  <div class="card">
+    <img src="images/bibliotheque/ebook2.png" alt="Stratégie B2B">
+    <h3>Ebook: Stratégie B2B</h3>
+    <button class="btn" onclick="shareWhatsApp('ebook2.pdf',this)">Partager sur WhatsApp</button>
+    <a href="ebooks/ebook2.pdf" class="btn hidden">Télécharger</a>
+  </div>
 </section>
+
+<footer class="footer">
+<div class="container">
+  <p>© 2026 Woldjy Impact Lab. Tous droits réservés.</p>
+</div>
+</footer>
 
 <script>
-// ===== LOGIC =====
-function isLoggedIn(){ return localStorage.getItem("userLoggedIn")==="true"; }
+// assure login
+if(localStorage.getItem('loggedIn')!=='true'){
+  alert('Vous devez être connecté pour accéder à la bibliothèque.');
+  window.location.href='login.html';
+}
 
-function showLibrary(){
-  const c=document.getElementById("library-content");
-  let count=parseInt(localStorage.getItem("shareCount")||"0");
+// WhatsApp share pour débloquer download
+const sharedCount={};
+function shareWhatsApp(file,btn){
+  const siteURL="https://bestdealshoping.github.io/Woldjy-Impact-Lab/";
+  const message=encodeURIComponent("Découvrez la bibliothèque Woldjy Impact Lab ! " + siteURL);
+  window.open(`https://api.whatsapp.com/send?text=${message}`,'_blank');
 
-  if(!isLoggedIn()){
-    c.innerHTML=`<div class="card"><p>Connecte-toi ou inscris-toi pour accéder aux documents.</p>
-    <button onclick="window.location.href='login.html'">Connexion</button>
-    <button onclick="window.location.href='register.html'">Inscription</button></div>`;
-    return;
-  }
+  if(!sharedCount[file]) sharedCount[file]=0;
+  sharedCount[file]++;
 
-  if(count<10){
-    const percent=(count/10)*100;
-    c.innerHTML=`
-    <div class="progress-box"><strong>${count}/10 partages</strong>
-      <div class="progress"><div class="progress-bar" style="width:${percent}%"></div></div>
-    </div>
-
-    <div class="card">
-      <h3>📘 eBook Marketing Digital</h3>
-      <p>Consultez le document en ligne.</p>
-      <button onclick="viewDoc('documents/ebook.pdf')">👁 Consulter</button>
-      <span class="locked">🔒 Verrouillé</span>
-      <button onclick="shareSite()">📤 Partager</button>
-    </div>
-
-    <div class="card">
-      <h3>📕 Guide Business</h3>
-      <p>Consultez le document en ligne.</p>
-      <button onclick="viewDoc('documents/guide.pdf')">👁 Consulter</button>
-      <span class="locked">🔒 Verrouillé</span>
-      <button onclick="shareSite()">📤 Partager</button>
-    </div>`;
+  if(sharedCount[file]>=5){
+    btn.nextElementSibling.classList.remove('hidden');
+    alert("Merci ! Vous pouvez maintenant télécharger ce document.");
   } else {
-    c.innerHTML=`
-    <div class="card">
-      <h3>📘 eBook Marketing Digital</h3>
-      <p>Consultez le document en ligne.</p>
-      <button onclick="viewDoc('documents/ebook.pdf')">👁 Consulter</button>
-      <a href="documents/ebook.pdf" download>Télécharger</a>
-    </div>
-
-    <div class="card">
-      <h3>📕 Guide Business</h3>
-      <p>Consultez le document en ligne.</p>
-      <button onclick="viewDoc('documents/guide.pdf')">👁 Consulter</button>
-      <a href="documents/guide.pdf" download>Télécharger</a>
-    </div>`;
+    alert(`Partage ${sharedCount[file]}/5 requis pour débloquer.`);
   }
 }
-
-function viewDoc(url){ window.open(url,"_blank"); }
-
-function shareSite(){
-  let count=parseInt(localStorage.getItem("shareCount")||"0");
-  if(count>=10) return;
-  const txt=encodeURIComponent("Je te partage une bibliothèque très utile 👉 ");
-  const url=encodeURIComponent(window.location.href);
-  window.open(`https://wa.me/?text=${txt}${url}`,"_blank");
-  count++;
-  localStorage.setItem("shareCount",count);
-  setTimeout(()=>{ showLibrary(); },1200);
-}
-
-showLibrary();
 </script>
-
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="container footer-grid">
-    <div>
-      <img src="logo.png" alt="Woldjy Impact Lab" class="logo-img">
-      <p>© 2026 Woldjy Impact Lab. Tous droits réservés.</p>
-    </div>
-    <div>
-      <h4>Navigation</h4>
-      <a href="index.html">Accueil</a>
-      <a href="services.html">Services</a>
-      <a href="offers.html">Formations</a>
-      <a href="contact.html">Contact</a>
-    </div>
-    <div>
-      <h4>Contact</h4>
-      <p>Email: contact@woldjyimpactlab.com</p>
-      <p>Téléphone: +509 42006945/42824391</p>
-      <p>#22rue du fort, petit-anse,Cap-Haïtien, Haïti</p>
-    </div>
-  </div>
-</footer>
 
 </body>
 </html>
