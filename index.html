@@ -2,36 +2,69 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>Accueil | Woldjy Impact Lab</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-body{font-family:Arial,sans-serif;background:#f4f6f8;color:#222;margin:0;padding:0;}
-header{background:#0f172a;color:#fff;padding:15px;text-align:center;}
-header h1{margin:0;}
-nav a{color:#fff;margin:0 10px;text-decoration:none;font-weight:bold;}
-nav a:hover{color:#ccc;}
-section{padding:30px;}
-button{padding:10px 15px;background:#0f172a;color:#fff;border:none;border-radius:5px;cursor:pointer;}
-button:hover{opacity:.9;}
-</style>
+<title>Processus | Woldjy Impact Lab</title>
+<link rel="stylesheet" href="style.css">
+<script src="js/script.js" defer></script>
 </head>
 <body>
 
-<header>
-<h1>Woldjy Impact Lab</h1>
-<nav>
-<a href="index.html">Accueil</a>
-<a href="bibliotheque.html">Notre Bibliothèque</a>
-<a href="login.html">Connexion</a>
-<a href="register.html">Inscription</a>
-</nav>
+<!-- HEADER / NAVIGATION -->
+<header class="header">
+  <div class="container nav">
+    <div class="logo">
+      <img src="images/hero/logo.png" alt="Woldjy Impact Lab" class="logo-img">
+    </div>
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="services.html">Services</a>
+      <a href="offers.html">Formations</a>
+      <a href="process.html">Processus</a>
+      <a href="audit.html">Audit</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a href="audit.html" class="btn btn-primary">Demander un audit gratuit</a>
+  </div>
 </header>
 
-<section>
+<!-- HERO PROCESSUS -->
+<
+<section class="hero container">
 <h2>Bienvenue 👋</h2>
 <p>Accédez à notre bibliothèque de ressources éducatives et professionnelles.</p>
-<button onclick="window.location.href='bibliotheque.html'">📚 Accéder à la Bibliothèque</button>
+<button class="btn-cta" onclick="window.location.href='bibliotheque.html'">📚 Accéder à la Bibliothèque</button>
 </section>
+
+<!-- CTA FINAL -->
+<section class="section cta-final">
+  <div class="container center">
+    <h2>Envie d’appliquer notre méthode à votre projet ?</h2>
+    <a href="audit.html" class="btn btn-primary">Réserver un audit gratuit</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <img src="images/hero/logo.png" alt="Woldjy Impact Lab" class="logo-img">
+      <p>© 2026 Woldjy Impact Lab. Tous droits réservés.</p>
+    </div>
+    <div>
+      <h4>Navigation</h4>
+      <a href="index.html">Accueil</a>
+      <a href="services.html">Services</a>
+      <a href="offers.html">Formations</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <p>Email: contact@woldjyimpactlab.com</p>
+      <p>Téléphone: +509 42006945</p>
+      <p>Cap-Haïtien, Haïti</p>
+    </div>
+  </div>
+</footer>
 
 </body>
 </html>
