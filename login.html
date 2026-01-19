@@ -2,39 +2,57 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>Connexion | Woldjy Impact Lab</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Connexion | Woldjy Impact Lab</title>
 <style>
-body{font-family:Arial,sans-serif;background:#f4f6f8;color:#222;margin:0;padding:0;}
-header{background:#0f172a;color:#fff;padding:15px;text-align:center;}
-header h1{margin:0;}
-section{padding:30px;}
-input{width:100%;padding:12px;margin:10px 0;border-radius:5px;border:1px solid #ccc;}
-button{padding:10px 15px;background:#0f172a;color:#fff;border:none;border-radius:5px;cursor:pointer;}
-button:hover{opacity:.9;}
-a{color:#0f172a;text-decoration:none;}
-a:hover{text-decoration:underline;}
+body {font-family: Arial, sans-serif; margin:0; padding:0; background:#f4f6f8;}
+header {background:#2196f3; color:#fff; padding:15px;}
+header .logo-img {height:50px;}
+.container {width:90%; max-width:600px; margin:50px auto;}
+h1 {color:#2196f3; text-align:center;}
+input {width:100%; padding:10px; margin:10px 0; box-sizing:border-box;}
+button {background:#ff5722; color:#fff; padding:10px 15px; border:none; cursor:pointer;}
+button:hover {opacity:0.85;}
+
+footer {
+    background-color: #008000;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+}
 </style>
 </head>
 <body>
 
 <header>
-<h1>Connexion</h1>
+  <div class="container">
+    <img src="images/hero/logo.png" alt="Woldjy Impact Lab" class="logo-img">
+  </div>
 </header>
 
-<section>
-<input type="email" placeholder="Email" id="email">
-<input type="password" placeholder="Mot de passe" id="password">
-<button onclick="login()">🔐 Se connecter</button>
-<p>Pas encore inscrit ? <a href="register.html">S'inscrire</a></p>
-</section>
+<div class="container">
+  <h1>Se connecter</h1>
+  <div class="form-group">
+    <input type="email" id="loginEmail" placeholder="Email">
+    <input type="password" id="loginPassword" placeholder="Mot de passe">
+    <button onclick="loginUser()">Se connecter</button>
+  </div>
+  <p>Pas de compte ? <a href="register.html">S'inscrire</a></p>
+</div>
 
 <script>
-function login(){
-  localStorage.setItem("userLoggedIn","true");
-  localStorage.setItem("shareCount","0"); // réinitialise partage
-  alert("Connexion réussie !");
-  window.location.href="bibliotheque.html";
+function loginUser(){
+  const email = document.getElementById('loginEmail').value;
+  const password = document.getElementById('loginPassword').value;
+  const storedEmail = localStorage.getItem('userEmail');
+  const storedPassword = localStorage.getItem('userPassword');
+  if(email === storedEmail && password === storedPassword){
+    localStorage.setItem('loggedIn', 'true');
+    window.location.href='bibliotheque.html';
+  } else {
+    alert('Email ou mot de passe incorrect.');
+  }
 }
 </script>
 
