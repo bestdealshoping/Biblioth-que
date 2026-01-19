@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Inscription | Woldjy Impact Lab</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{font-family:Arial,sans-serif;background:#f4f6f8;color:#222;margin:0;padding:0;}
+header{background:#0f172a;color:#fff;padding:15px;text-align:center;}
+header h1{margin:0;}
+section{padding:30px;}
+input{width:100%;padding:12px;margin:10px 0;border-radius:5px;border:1px solid #ccc;}
+button{padding:10px 15px;background:#0f172a;color:#fff;border:none;border-radius:5px;cursor:pointer;}
+button:hover{opacity:.9;}
+a{color:#0f172a;text-decoration:none;}
+a:hover{text-decoration:underline;}
+</style>
+</head>
+<body>
+
+<header>
+<h1>Inscription</h1>
+</header>
+
+<section>
+<input type="text" placeholder="Nom complet" id="name">
+<input type="email" placeholder="Email" id="email">
+<input type="password" placeholder="Mot de passe" id="password">
+<button onclick="register()">📝 S'inscrire</button>
+</section>
+
+<script>
+function register(){
+  localStorage.setItem("userLoggedIn","true");
+  localStorage.setItem("shareCount","0"); // init partage
+  alert("Inscription réussie !");
+  window.location.href="bibliotheque.html";
+}
+</script>
+
+</body>
+</html>
